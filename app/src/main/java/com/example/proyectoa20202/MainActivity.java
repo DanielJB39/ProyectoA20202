@@ -39,9 +39,11 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         // startActivity(new Intent(MainActivity.this, ActDashboard.class));
     }
+//comentario 2
+//soy un comentario de prueba :)
+    //bfgnhfghfhgfh
 
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
