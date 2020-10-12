@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:padding="16dp"
+    android:visibility="visible"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tloginad"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Bienvenido conductor"
+            android:textAlignment="center"
+            android:textDirection="firstStrongRtl"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/Emailad"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/round_border"
+                android:ems="10"
+                android:hint="  Email"
+                android:inputType="textEmailAddress"
+                android:padding="16dp" />
+
+            <EditText
+                android:id="@+id/Passwordad"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/round_border"
+                android:ems="10"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:padding="16dp" />
+
+            <Button
+                android:id="@+id/Loginad"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/round_bg"
+                android:text="Ingresar"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvregisterad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="                                      No tines cuenta" />
+
+            <Button
+                android:id="@+id/registerad"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/round_bg"
+                android:text="Registrarse"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
