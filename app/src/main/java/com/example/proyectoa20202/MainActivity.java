@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // startActivity(new Intent(MainActivity.this, ActDashboard.class));
     }
 
-//soy un comentario de prueba :)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
