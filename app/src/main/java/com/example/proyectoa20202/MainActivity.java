@@ -176,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 Toast.makeText(MainActivity.this,"Cliente registrado...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                saveUser(email);
+                                String id = mAuth.getCurrentUser().getUid();
+                                saveUser(id, email);
                             }
 
                             else {
@@ -193,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    void saveUser(String email){
+    void saveUser(String id, String email){
         String selectUser = mPref.getString("user", "");
 
         User user = new User();
@@ -201,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (selectUser.equals("driver")){
-            mDatabase.child("Users").child("Drivers").push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            mDatabase.child("Users").child("Drivers").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
@@ -215,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         else if (selectUser.equals("client")){
-            mDatabase.child("Users").child("Clients").push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            mDatabase.child("Users").child("Clients").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
