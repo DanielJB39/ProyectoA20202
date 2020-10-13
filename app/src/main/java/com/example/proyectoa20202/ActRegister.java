@@ -92,6 +92,8 @@ public class ActRegister extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(ActRegister.this, "Registro exitoso.",
                                     Toast.LENGTH_SHORT).show();
+
+                            //Intent intent = new Intent(ActRegister.this, Map)
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView tvRegister;
     private ProgressDialog loadingBar;
+    SharedPreferences mPref;
+    DatabaseReference mDatabase;
 
 
     @Override
@@ -46,16 +51,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tEmail = (EditText)findViewById(R.id.Email);
+        tEmail = (EditText)findViewById(R.id.Email );
         tPassword = (EditText)findViewById(R.id.Password);
         bLogin = (Button) findViewById(R.id.Login);
         bRegister = (Button) findViewById(R.id.register);
         tvRegister = (TextView) findViewById(R.id.tvregister);
         mAuth = FirebaseAuth.getInstance();
         loadingBar = new ProgressDialog(this);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         bRegister.setVisibility(View.INVISIBLE);
         bRegister.setEnabled(false);
+        mPref = getApplicationContext().getSharedPreferences("typeUser", MODE_PRIVATE);
+
+        String selectUser = mPref.getString("user", "");
+        Toast.makeText(this, "Selecciono:..." + selectUser, Toast.LENGTH_SHORT).show();
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
