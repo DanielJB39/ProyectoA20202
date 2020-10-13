@@ -63,9 +63,10 @@ public class MainActivity extends AppCompatActivity {
         bRegister.setVisibility(View.INVISIBLE);
         bRegister.setEnabled(false);
         mPref = getApplicationContext().getSharedPreferences("typeUser", MODE_PRIVATE);
-
         String selectUser = mPref.getString("user", "");
         Toast.makeText(this, "Selecciono:..." + selectUser, Toast.LENGTH_SHORT).show();
+
+
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void RegistrarCliente(String email, String password){
+    private void RegistrarCliente(final String email, String password){
         if (TextUtils.isEmpty(email)){
             Toast.makeText(MainActivity.this, "Por favor ingrese correo...", Toast.LENGTH_SHORT).show();
         }
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 Toast.makeText(MainActivity.this,"Cliente registrado...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
+                                saveUser(email);
                             }
 
                             else {
@@ -186,6 +188,47 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
 
+
+
+    }
+
+
+    void saveUser(String email){
+        String selectUser = mPref.getString("user", "");
+
+        User user = new User();
+        user.setEmail(email);
+
+
+        if (selectUser.equals("driver")){
+            mDatabase.child("Users").child("Drivers").push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(MainActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this, "Registro fallido", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+        }
+        else if (selectUser.equals("client")){
+            mDatabase.child("Users").child("Clients").push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(MainActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(MainActivity.this, "Registro fallido", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+        }
 
 
     }

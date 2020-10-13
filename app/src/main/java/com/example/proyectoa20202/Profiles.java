@@ -45,7 +45,7 @@ public class Profiles extends AppCompatActivity {
             public void onClick(View v) {
                 editor.putString("user", "driver");
                 editor.apply();
-                Intent ActLoginDriver = new Intent(Profiles.this, ActLoginDriver.class);
+                Intent ActLoginDriver = new Intent(Profiles.this, MainActivity.class);
                 startActivity(ActLoginDriver);
             }
         });
